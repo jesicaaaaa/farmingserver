@@ -46,7 +46,7 @@ h6 { color: #a15025; font-size: 15px; text-align: center; }
 
 /* NavBar */
 .navbar {
-  background-color: #d5e6db;
+  background: linear-gradient(#5db36da4, #367f56ac);
   width: 100%;
   height: 60px;
   top: 0;
