@@ -4,17 +4,20 @@ import Leaderboard from "./component/Leaderboard";
 import QuestList from "./component/QuestList";
 import Calendar from "./component/Calendar";
 
-export default function HomePage({ character, player, isVip }: { character?: {name:string; coins:number}, player?: {name:string}, isVip?: boolean }) {
+export default function HomePage() {
+  const [character, setCharacter] = useState<{ name: string; coins: number } | null>(null);
+  const [player, setPlayer] = useState<{ name: string } | null>(null);
+  const [isVip, setIsVip] = useState(false);
+
   const [tab, setTab] = useState<"total" | "month" | "week">("total");
   const [leaderboards, setLeaderboards] = useState({
-    total: [] as {name:string; score:number}[],
-    month: [] as {name:string; score:number}[],
-    week: [] as {name:string; score:number}[]
+    total: [] as { name: string; score: number }[],
+    month: [] as { name: string; score: number }[],
+    week: [] as { name: string; score: number }[],
   });
   const [quests, setQuests] = useState({ daily: [] as any[], weekly: [] as any[] });
-
   const [streak, setStreak] = useState(0);
-  const [coins, setCoins] = useState(character?.coins || 0);
+  const [coins, setCoins] = useState(0);
 
 
   // 領取獎勵
@@ -76,13 +79,13 @@ export default function HomePage({ character, player, isVip }: { character?: {na
           <>
             <h1>
               歡迎回來，{player?.name}！{" "}
-              {isVip && <span className="vip-label">👑 VIP 玩家</span>}
+              {isVip && <span className="vip-label">👑VIP 玩家</span>}
             </h1>
             <p>請努力賺取小金金，養活外星大王！</p>
 
             <div className="player-info">
               <div>👤 名稱：{character.name}</div>
-              <div className="coins">💰 擁有的小金金：{coins}</div>
+              <div className="coins">💰擁有的小金金：{coins}</div>
             </div>
 
             <div className="streak-box">
@@ -114,8 +117,8 @@ export default function HomePage({ character, player, isVip }: { character?: {na
           <>
             <h3>🌱 歡迎來到 我要退休下鄉種田 🌱</h3>
             <p>請努力賺取小金金，養活外星大王！</p>
-            <p style={{ color: "red" }}>⚠️ 你是個黑戶吼！還不快去創建角色 ⚠️</p>
-            <a href="/create_player" className="btn-start">✨ 創建角色</a>
+            <p style={{ color: "red" }}>⚠️你是個黑戶吼！還不快去創建角色⚠️</p>
+            <a href="/create_player" className="btn-start">✨創建角色</a>
           </>
         )}
       </div>
